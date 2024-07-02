@@ -1,0 +1,29 @@
+{
+  "name": "clean-architecture",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.ts",
+  "scripts": {
+    "start": "ts-node src/server.ts",
+    "build": "tsc",
+    "start:dev": "nodemon src/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.6.0",
+    "@types/express": "^4.17.21",
+    "eslint": "^9.6.0",
+    "globals": "^15.7.0",
+    "nodemon": "^3.1.4",
+    "prettier": "^3.3.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.2",
+    "typescript-eslint": "^7.14.1"
+  }
+}
