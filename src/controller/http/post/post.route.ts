@@ -1,20 +1,20 @@
 import express from 'express';
-import { PetHttpHandler } from './pet.handler';
 import { container } from 'tsyringe';
-import { PetDummyRepository } from '../../../infrastructure/persistence/pet/pet.dummy';
-import { PetUseCase } from '../../../app/usecase/pet.usecase';
+import { PostUsecase } from '../../../app/usecase/post.usecase';
+import { PostDummyRepository } from '../../../infrastructure/persistence/post/post.dummy';
+import { PostHttpHandler } from './post.handler';
 
 export default () => {
   const router = express.Router();
 
-  container.register('PetUseCase', {
+  container.register('PostUseCase', {
     useFactory: (c) => {
-      c.register('PetRepository', { useClass: PetDummyRepository });
-      return c.resolve(PetUseCase);
+      c.register('PostRepository', { useClass: PostDummyRepository });
+      return c.resolve(PostUsecase);
     },
   });
-  const handler = container.resolve(PetHttpHandler);
+  const handler = container.resolve(PostHttpHandler);
 
-  router.get('/pets', handler.fetchPets.bind(handler));
+  router.get('/posts', handler.fetchPosts.bind(handler));
   return router;
 };

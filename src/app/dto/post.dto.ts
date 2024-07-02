@@ -1,4 +1,4 @@
-export class PetRequestDto {
+export class PostRequestDto {
   private _id: string;
   private _type: string;
   private _name: string;
@@ -10,4 +10,4 @@ export class PetRequestDto {
   }
 }
 
-export class PetResponseDto {}
+export class PostResponseDto {}

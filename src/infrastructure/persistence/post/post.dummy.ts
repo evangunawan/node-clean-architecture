@@ -1,13 +1,13 @@
-import { Pet } from '../../../app/entity/pet.entity';
-import { PetRepository } from '../../../app/repository/pet.repository';
+import { PostRepository } from '../../../app/repository/post.repository';
+import { Post } from '../../../app/entity/post.entity';
 
-export class PetDummyRepository implements PetRepository {
-  public async fetchPets(type?: string): Promise<Pet[]> {
+export class PostDummyRepository implements PostRepository {
+  public async fetchPosts(type?: string): Promise<Post[]> {
     return new Promise((resolve) => {
       return resolve([
-        new Pet('1', 'dog', 'Bonny'),
-        new Pet('2', 'cat', 'Cookie'),
-        new Pet('3', 'dog', 'Arthur'),
+        new Post('1', 'text', 'Bonny'),
+        new Post('2', 'text', 'Cookie'),
+        new Post('3', 'text', 'Arthur'),
       ]);
     });
   }

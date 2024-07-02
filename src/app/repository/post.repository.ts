@@ -1,5 +1,5 @@
-import { Pet } from '../entity/pet.entity';
+import { Post } from '../entity/post.entity';
 
-export interface PetRepository {
-  fetchPets(type?: string): Promise<Pet[]>;
+export interface PostRepository {
+  fetchPosts(type?: string): Promise<Post[]>;
 }

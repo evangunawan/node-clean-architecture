@@ -1,20 +1,20 @@
-export class Pet {
+export class Post {
   private _id: string;
   private _type: string;
-  private _name: string;
+  private _content: string;
 
-  constructor(id: string, type: string, name: string) {
+  constructor(id: string, type: string, content: string) {
     this._id = id;
     this._type = type;
-    this._name = name;
+    this._content = content;
   }
 
-  get name(): string {
-    return this._name;
+  get content(): string {
+    return this._content;
   }
 
-  set name(value: string) {
-    this._name = value;
+  set content(value: string) {
+    this._content = value;
   }
 
   get type(): string {
