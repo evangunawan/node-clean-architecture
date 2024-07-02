@@ -7,6 +7,7 @@ import { PostHttpHandler } from './post.handler';
 export default () => {
   const router = express.Router();
 
+  // todo: need refactor in this dependency registration. How do we handle a lot of them?
   container.register('PostUseCase', {
     useFactory: (c) => {
       c.register('PostRepository', { useClass: PostDummyRepository });

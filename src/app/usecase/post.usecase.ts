@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { PostRepository } from '../repository/post.repository';
-import { Post } from '../entity/post.entity';
+import { PostResultDto } from '../dto/post.dto';
 
 @injectable()
 export class PostUsecase {
@@ -8,7 +8,8 @@ export class PostUsecase {
     @inject('PostRepository') private postRepository: PostRepository,
   ) {}
 
-  public async getPosts(): Promise<Post[]> {
-    return this.postRepository.fetchPosts();
+  public async getPosts(): Promise<PostResultDto[]> {
+    const result = await this.postRepository.fetchPosts();
+    return result.map((data) => new PostResultDto(data));
   }
 }

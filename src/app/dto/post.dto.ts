@@ -1,13 +1,21 @@
-export class PostRequestDto {
-  private _id: string;
-  private _type: string;
-  private _name: string;
+import { Post } from '../entity/post.entity';
 
-  constructor(id: string, type: string, name: string) {
-    this._id = id;
-    this._type = type;
-    this._name = name;
+export class PostResultDto {
+  private readonly _id: string;
+  private readonly _type: string;
+  private readonly _content: string;
+
+  constructor(entity: Post) {
+    this._id = entity.id;
+    this._type = entity.type;
+    this._content = entity.content;
+  }
+
+  public toJSON() {
+    return {
+      id: this._id,
+      type: this._type,
+      content: this._content,
+    };
   }
 }
-
-export class PostResponseDto {}
