@@ -1,7 +1,7 @@
 import express from 'express';
 import { container } from 'tsyringe';
 import { PostUsecase } from '../../../app/usecase/post.usecase';
-import { PostDummyRepository } from '../../../infrastructure/persistence/post/post.dummy';
+import { PostMockRepository } from '../../../infrastructure/persistence/post/post.mock';
 import { PostHttpHandler } from './post.handler';
 
 export default () => {
@@ -10,7 +10,7 @@ export default () => {
   // todo: need refactor in this dependency registration. How do we handle a lot of them?
   container.register('PostUseCase', {
     useFactory: (c) => {
-      c.register('PostRepository', { useClass: PostDummyRepository });
+      c.register('PostRepository', { useClass: PostMockRepository });
       return c.resolve(PostUsecase);
     },
   });
