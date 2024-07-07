@@ -1,6 +1,8 @@
 import express from 'express';
 import postRoute from './controller/http/post/post.route';
 import bodyParser from 'body-parser';
+import helmet from 'helmet';
+import morgan from 'morgan';
 
 class AppServer {
   private static _serverInstance: AppServer;
@@ -28,8 +30,18 @@ class AppServer {
     const port = process.env.PORT || 3000;
 
     // init middlewares and express components
+    this._express.use(helmet());
     this._express.use(bodyParser.json());
     this._express.use(bodyParser.urlencoded({ extended: false }));
+
+    if (
+      process.env.NODE_ENV !== 'production' ||
+      process.env.NODE_LOGGER === 'true'
+    ) {
+      const morganFmt =
+        ':date[iso] | :remote-addr | ":method :url" :status :response-time ms';
+      this._express.use(morgan(morganFmt));
+    }
 
     // init routes
     this.initHttpRoutes();
