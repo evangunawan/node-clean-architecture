@@ -1,8 +1,9 @@
 import express from 'express';
-import postRoute from './controller/http/post/post.route';
 import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import morgan from 'morgan';
+
+import postRoute from './controller/http/post/post.route';
 
 class AppServer {
   private static _serverInstance: AppServer;
@@ -15,6 +16,7 @@ class AppServer {
   }
 
   private initHttpRoutes() {
+    // todo: this route initialization can be refactored to support a large number of routes.
     if (this._express) {
       this._express.use(postRoute());
     }
@@ -48,7 +50,7 @@ class AppServer {
 
     // start server and listen requests 🔥
     this._express.listen(port, () => {
-      return console.log(`Server listening on port ${port}`);
+      return console.log(`Server is listening on port ${port}...`);
     });
     return this;
   }
