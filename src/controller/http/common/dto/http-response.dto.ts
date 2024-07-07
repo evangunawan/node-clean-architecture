@@ -1,12 +1,12 @@
 export class HttpResponseDto {
   private readonly _status: number;
-  private readonly _data: any;
+  private readonly _data: Record<string, unknown> | Record<string, unknown>[];
   private readonly _message?: string;
   private readonly _error?: string;
 
   constructor(payload: {
     status?: number;
-    data: any;
+    data: Record<string, unknown> | Record<string, unknown>[];
     message?: string;
     error?: string;
   }) {

@@ -4,7 +4,10 @@ import { injectable } from 'tsyringe';
 
 @injectable()
 export class PostMySqlRepository implements PostRepository {
-  fetchPosts(type?: string): Promise<Post[]> {
+  createPost(): Promise<Post> {
+    throw new Error('Method not implemented.');
+  }
+  fetchPosts(): Promise<Post[]> {
     throw new Error('Method not implemented.');
   }
 }
