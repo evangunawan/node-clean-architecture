@@ -19,3 +19,21 @@ export class PostResultDto {
     };
   }
 }
+
+export class PostCreateDto {
+  private readonly _type: string;
+  private readonly _content: string;
+
+  constructor(type: string, content: string) {
+    this._type = type;
+    this._content = content;
+  }
+
+  get content(): string {
+    return this._content;
+  }
+
+  get type(): string {
+    return this._type;
+  }
+}

@@ -1,10 +1,9 @@
 export class Post {
-  private _id: string;
+  private _id?: string;
   private _type: string;
   private _content: string;
 
-  constructor(id: string, type: string, content: string) {
-    this._id = id;
+  constructor(type: string, content: string) {
     this._type = type;
     this._content = content;
   }
@@ -25,7 +24,7 @@ export class Post {
     this._type = value;
   }
 
-  get id(): string {
+  get id(): string | undefined {
     return this._id;
   }
 
