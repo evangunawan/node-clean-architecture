@@ -10,6 +10,7 @@ class AppServer {
   private static _serverInstance: AppServer;
   private _express: express.Application | undefined;
   private _server: http.Server | undefined;
+  private _port: string;
 
   constructor() {}
 
@@ -21,6 +22,10 @@ class AppServer {
     return this._server || null;
   }
 
+  public get port(): string {
+    return this._port;
+  }
+
   public initializeServer(ready?: (app: AppServer) => void): AppServer {
     if (this._express !== undefined) {
       throw new Error('App already initialized.');
@@ -28,7 +33,7 @@ class AppServer {
 
     // create express server application
     this._express = express();
-    const port = process.env.PORT || 3000;
+    this._port = process.env.PORT || '3000';
 
     // init middlewares and express components
     this._express.use(helmet());
@@ -48,9 +53,9 @@ class AppServer {
     this.initHttpRoutes();
 
     // start server and listen requests 🔥
-    this._server = this._express.listen(port, () => {
+    this._server = this._express.listen(this._port, () => {
       if (ready) ready(this);
-      return console.log(`Server is listening on port ${port}...`);
+      return console.log(`Server is listening on port ${this._port}...`);
     });
 
     process.on('SIGTERM', () => this.shutDown());
