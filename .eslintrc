@@ -1,7 +1,12 @@
 {
   "parser": "@typescript-eslint/parser",
-  "parserOptions": { "ecmaVersion": 2018, "sourceType": "module" },
-  "plugins": ["@typescript-eslint"],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -13,5 +18,15 @@
   "env": {
     "browser": true,
     "es2021": true
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "test/**/*"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 }

@@ -8,7 +8,8 @@
     "build": "tsc",
     "start:dev": "nodemon index.ts",
     "format": "prettier --write ./src",
-    "lint": "eslint src/**/*.ts"
+    "lint": "eslint src/**/*.ts",
+    "test": "jest --silent"
   },
   "keywords": [],
   "author": "",
@@ -24,14 +25,17 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
     "@types/morgan": "^1.9.9",
     "@typescript-eslint/eslint-plugin": "^7.15.0",
     "@typescript-eslint/parser": "^7.15.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "globals": "^15.7.0",
+    "jest": "^29.7.0",
     "nodemon": "^3.1.4",
     "prettier": "^3.3.2",
+    "ts-jest": "^29.2.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.2"
   }
