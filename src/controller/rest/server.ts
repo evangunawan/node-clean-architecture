@@ -2,6 +2,7 @@ import express, { Response, Request } from 'express';
 import bodyParser from 'body-parser';
 import { container } from 'tsyringe';
 import { BookHandler } from './handler/book';
+import { requestLogger } from '../middleware/api-logger';
 
 interface AppConfig {
   port?: string;
@@ -12,6 +13,7 @@ export async function createExpressServer(
 ): Promise<void> {
   const app = express();
   app.use(bodyParser.json());
+  app.use(requestLogger);
 
   const appRouter = express.Router();
 

@@ -25,7 +25,9 @@ export class BookHandler extends CommonHandler {
 
     // Define required routes/endpoints
     bookRoutes.get('/', this.fetchBooksHandler.bind(this));
-    bookRoutes.get('/:bookId', this.fetchBookById.bind(this));
+    bookRoutes.get('/:bookId', this.fetchBookByIdHandler.bind(this));
+
+    bookRoutes.post('/', this.createBookHandler.bind(this));
 
     // Define root path for the handler.
     router.use('/books', bookRoutes);
@@ -54,7 +56,7 @@ export class BookHandler extends CommonHandler {
     }
   }
 
-  private async fetchBookById(
+  private async fetchBookByIdHandler(
     req: Request,
     res: Response,
     next: NextFunction,
@@ -73,5 +75,13 @@ export class BookHandler extends CommonHandler {
     } catch (e) {
       next(e);
     }
+  }
+
+  private async createBookHandler(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> {
+    throw new Error('Implement this function.');
   }
 }
