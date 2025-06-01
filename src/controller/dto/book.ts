@@ -1,5 +1,6 @@
 import Joi, { ValidationResult } from 'joi';
-import { CommonRequestDto } from './common';
+import { CommonRequestDto, CommonResponseDto } from './common';
+import { Book } from '../../app/entity/book';
 
 export class CreateBookRequestDto implements CommonRequestDto {
   public title: string;
@@ -49,7 +50,23 @@ export class FetchBookRequestDto implements CommonRequestDto {
   }
 }
 
-export class FetchBookResponseDto {
+export class FetchBookByIdDto implements CommonRequestDto {
+  public bookId: string;
+
+  constructor(data: Partial<FetchBookByIdDto>) {
+    Object.assign(this, data);
+  }
+
+  validate(): ValidationResult {
+    const schema = Joi.object({
+      bookId: Joi.string().required(),
+    });
+
+    return schema.validate(this);
+  }
+}
+
+export class FetchBookResponseDto implements CommonResponseDto {
   public id: string;
   public title: string;
   public authorId?: string;
@@ -58,7 +75,25 @@ export class FetchBookResponseDto {
   public publisher?: string;
   public pageCount?: number;
 
-  constructor(data: Partial<FetchBookResponseDto>) {
-    Object.assign(this, data);
+  constructor(data: Book) {
+    this.id = data.id;
+    this.title = data.title;
+    this.authorId = data.author?.id;
+    this.publishedYear = data.publishedYear;
+    this.genre = data.genre;
+    this.publisher = data.publisher;
+    this.pageCount = data.pageCount;
+  }
+
+  public toJSON(): Record<string, unknown> {
+    return {
+      id: this.id,
+      title: this.title,
+      authorId: this.authorId,
+      publishedYear: this.publishedYear,
+      genre: this.genre,
+      publisher: this.publisher,
+      pageCount: this.pageCount,
+    };
   }
 }

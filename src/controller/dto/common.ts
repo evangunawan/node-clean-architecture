@@ -5,6 +5,9 @@ export interface CommonRequestDto {
 }
 
 export interface CommonResponseDto {
-  httpHeaders?: Record<string, string>;
+  /**
+   * toJSON() is a JSON object that is ready to be returned in the HTTP response body.
+   * With this, response Content-Type will be `application/json`.
+   */
   toJSON(): Record<string, unknown>;
 }
